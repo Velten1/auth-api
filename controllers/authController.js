@@ -10,7 +10,8 @@ export const registerController = async (req, res) => {
         return res.status(200).json(response);
     }
     catch (error) {
-        return res.status(500).json({ message: 'Erro ao registrar usuário' });
-        console.log(error);
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao registrar usuário', error: error.message });
+        
     }
 }
