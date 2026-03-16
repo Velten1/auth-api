@@ -41,8 +41,9 @@ export const loginService = async (email, password) => {
     throw new Error('senha está incorreto')
   }
 
-  const token = generateToken (user.id)
-  return {status:200, data:{token, user}}
+  const token = generateToken(user.id);
+  const { password: _, ...userWithoutPassword } = user;
+  return { status: 200, data: { token, user: userWithoutPassword } }
   
 }
 
