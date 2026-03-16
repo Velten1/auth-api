@@ -1,4 +1,4 @@
-import { findUserByEmail, createUser, generateToken} from '../repositories/authRepository.js';
+import { findUserByEmail, createUser, generateToken, findUserById } from '../repositories/authRepository.js';
 import bcrypt from 'bcryptjs'
 
 
@@ -46,3 +46,11 @@ export const loginService = async (email, password) => {
   
 }
 
+export const meService = async (userId) => {
+  const user = await findUserById(userId);
+  if (!user) {
+    throw new Error('Usuário não encontrado');
+  }
+  const { password: _, ...userWithoutPassword } = user;
+  return { status: 200, data: userWithoutPassword };
+};

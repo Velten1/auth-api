@@ -1,4 +1,4 @@
-import { registerService, loginService } from '../services/authService.js';  // npm install @service/auth                    
+import { registerService, loginService } from '../services/authService.js';  // npm install @service/auth  
 
 export const registerController = async (req, res) => {
     try {
@@ -35,3 +35,14 @@ export const loginController = async (req, res) => {
 }
 
 }
+
+export const meController = async (req, res) => {
+    try {
+        const user = req.userId;
+        const response = await meService(user);
+        return res.status(200).json(response);
+    } catch (error) {
+        console.error('Erro ao obter informações do usuário:', error.message);
+        return res.status(500).json({ message: 'Erro interno do servidor' });
+    }
+};
