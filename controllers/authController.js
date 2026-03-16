@@ -1,4 +1,4 @@
-import { registerService, loginService } from '../services/authService.js';  // npm install @service/auth  
+import { registerService, loginService, meService } from '../services/authService.js';  // npm install @service/auth  
 
 export const registerController = async (req, res) => {
     try {
